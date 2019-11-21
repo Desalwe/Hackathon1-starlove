@@ -59,7 +59,7 @@ class App extends Component {
   }
 
   // componentDidMount() {
-  //   this.setState({ CharData: CharacterPackages });
+  //   this.setState({ charData: CharacterPackages });
   // }
 
   chatImageClick = (character) => {
