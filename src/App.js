@@ -1,18 +1,24 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import CharacterPackages from './CharacterPackages'
+import CharacterPackages from './CharacterPackages';
 import ChooseCharacter from './ChooseCharacter';
 import Preview from './Preview';
 import Top5 from './Top5';
 import Chat from './Chat';
-
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      CharData: []
+      CharData: [],
+      character: {},
+      gender: {
+        male: true,
+      },
+      healthStatus: {
+        alive: true,
+      },
     }
   }
 
@@ -25,6 +31,12 @@ class App extends Component {
     return console.log(this.state.CharData)
   }
 
+  selectCharacter = event => {
+    const clickedStr = event.target.value;
+    const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
+
+    this.setState ({ character: clickedChar || {} });
+  }
 
   render() {
 
@@ -54,9 +66,12 @@ class App extends Component {
               renders the first one that matches the current URL. */}
             <Switch>
 
-              <Route exact path="/">
-                <ChooseCharacter />
-              </Route>
+            <Route exact path="/">
+               <ChooseCharacter 
+               character={this.state.character}
+               selectCharacter={this.selectCharacter}
+               />
+               </Route>
 
               <Route exact path="/preview">
                 <Preview />
@@ -76,8 +91,6 @@ class App extends Component {
       </>
     );
   }
-
-
 }
 
 export default App
