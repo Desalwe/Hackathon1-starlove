@@ -13,23 +13,13 @@ class App extends Component {
     this.state = {
       CharData: [],
       character: {},
-      gender: {
-        male: true,
-        female: false,
-      },
-      healthStatus: {
-        alive: true,
-      },
+      gender: 'both genders', // can be ['male', 'female', '']
+      health: 'dead and living',
     }
   }
 
   componentDidMount() {
     this.setState({ CharData: CharacterPackages });
-    console.log(this.state.CharData)
-  }
-
-  test = () => {
-    return console.log(this.state.CharData)
   }
 
   selectCharacter = event => {
@@ -38,13 +28,21 @@ class App extends Component {
     this.setState ({ character: clickedChar || {} });
   }
 
+  clickingButton = () => {
+    this.setState({ isMale: !this.state.isMale });
+  }
 
+  handleSelectGender = (e) => {
+    this.setState({ gender: e.target.value })
+  }
+
+  handleSelectHealth = (e) => {
+    this.setState({ health: e.target.value })
+  }
 
   render() {
-
     return (
       <>
-        <button onClick={this.test} >re-render</button>
         <Router>
           <div>
             <nav>
@@ -73,8 +71,9 @@ class App extends Component {
                character={this.state.character}
                selectCharacter={this.selectCharacter}
                gender={this.state.gender}
-               genderOptions={this.genderOptions}
-               onChange={this.options}
+               health={this.state.health}
+               onSelectGender={this.handleSelectGender}
+               onSelectHealth={this.handleSelectHealth}
                />
                </Route>
 
