@@ -11,11 +11,26 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      demo: 0
+      demo: 0,
+      chooseCharacter: {},
+      profile: {
+        gender: false,
+        healthStatus: false,
+      },
     }
-
   }
 
+  handleChooseCharacter = (characterName) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        chooseCharacter: {
+          ...state.chooseCharacter,
+          [characterName]: !state.chooseCharacter[characterName],
+        }
+      }
+    })
+  };
 
   render() {
 
@@ -44,9 +59,7 @@ class App extends Component {
               renders the first one that matches the current URL. */}
           <Switch>
 
-            <Route exact path="/">
-              <ChooseCharacter />
-            </Route>
+            <Route exact path="/"render={() => <ChooseCharacter ChooseCharacter={this.state.chooseCharacter} onChange={this.handleChooseCharacter} />} />
 
             <Route exact path="/preview">
               <Preview />
