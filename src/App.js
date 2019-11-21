@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import CharacterPackages from './CharacterPackages';
 import ChooseCharacter from './ChooseCharacter';
 import Preview from './Preview';
 import Top5 from './Top5';
 import Chat from './Chat';
-
 
 class App extends Component {
 
@@ -12,33 +12,25 @@ class App extends Component {
     super(props);
     this.state = {
       CharData: [],
-      chooseCharacter: {},
-      profile: {
-        gender: false,
-        healthStatus: false,
+      character: {},
+      gender: {
+        male: true,
+      },
+      healthStatus: {
+        alive: true,
       },
     }
   }
 
-  handleChooseCharacter = (characterName) => {
-    this.setState((state) => {
-      return {
-        ...state,
-        chooseCharacter: {
-          ...state.chooseCharacter,
-          [characterName]: !state.chooseCharacter[characterName],
-        }
-      }
-    })
-  };
-
   componentDidMount() {
   this.setState({ CharData: CharacterPackages });
-  console.log(this.state.CharData)
   }
 
-  test = () => {
-  return console.log(this.state.CharData)
+  selectCharacter = event => {
+    const clickedStr = event.target.value;
+    const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
+
+    this.setState ({ character: clickedChar || {} });
   }
 
   render() {
@@ -68,7 +60,12 @@ class App extends Component {
               renders the first one that matches the current URL. */}
           <Switch>
 
-            <Route exact path="/"render={() => <ChooseCharacter ChooseCharacter={this.state.chooseCharacter} onChange={this.handleChooseCharacter} />} />
+            <Route exact path="/">
+               <ChooseCharacter 
+               character={this.state.character}
+               selectCharacter={this.selectCharacter}
+               />
+               </Route>
 
             <Route exact path="/preview">
               <Preview />
@@ -87,8 +84,6 @@ class App extends Component {
       </Router>
     );
   }
-
-
 }
 
 export default App
