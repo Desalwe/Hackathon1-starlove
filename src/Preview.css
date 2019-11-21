@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+.polaroid {
+  position: relative;
+  background-color: lightgrey;
+  flex-basis: auto;
+  border: 1px solid darkgrey;
+  background-color: white;
+  padding: 6% 6% 20% 6%;
+  margin: 3% 2%;
+  box-shadow: 5px 10px 10px darkgrey;
+  background-color:rgba(227,227,227, 0.3);
+  background-image: repeating-linear-gradient(35deg, transparent, transparent 5px, rgba(255,255,255,.2) 5px, rgba(255,255,255,.3) 20px);
+  border-radius: 2%;
+}
+
+.polaroid img {
+  width: 100%;
+  border-style: ridge;
+  border-color: rgba(227,227,227, 0.3);
+  border-radius: 3%;
+
+}
+
+.polaroid p {
+  margin: 0;
+  padding: 0;
+  content: attr(caption);
+  position: absolute;
+  bottom: 3%;
+  left: 0px;
+  justify-content: center;
+  width: 100%;
+  font-size: calc(15px + 4vw);
+  text-align: center;
+  font-family: 'Indie Flower', cursive;
+}
