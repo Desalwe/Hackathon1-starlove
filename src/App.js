@@ -44,9 +44,9 @@ class App extends Component {
         }
       ],
       whoAmI: {
-          "name": "Anakin Skywalker",
-          "image": "https://vignette.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png",
-          "rating": 3
+        "name": "Anakin Skywalker",
+        "image": "https://vignette.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png",
+        "rating": 3
       },
       selectedCharacter: {},
       userMessage: "",
@@ -58,16 +58,16 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({ CharacterData: CharacterPackages });
-    }
+componentDidMount() {
+  this.setState({ CharacterData: CharacterPackages });
+  }
 
   chatImageClick = (character) => {
     this.setState({ selectedCharacter: character })
   }
 
   showCurrentlyTyping = e => {
-    this.setState({userMessage: e.target.value});
+    this.setState({ userMessage: e.target.value });
   }
 
   selectCharacter = event => {
@@ -86,15 +86,15 @@ class App extends Component {
 
   sendMessageNow = e => {
     e.preventDefault();
-    if(this.state.userMessage){
+    if (this.state.userMessage) {
       this.setState((state) => {
-        return{
+        return {
           ...state,
-          sentMessages: [...state.sentMessages, [state.userMessage, ]],
+          sentMessages: [...state.sentMessages, [state.userMessage,]],
           userMessage: "",
         }
       }
-      
+
       )
     }
   }
@@ -103,62 +103,62 @@ class App extends Component {
     return (
       <>
         <Router>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Choose Character</Link>
-                </li>
-                <li>
-                  <Link to="/preview">Preview</Link>
-                </li>
-                <li>
-                  <Link to="/top5">Top 5</Link>
-                </li>
-                <li>
-                  <Link to="/chat">Chat</Link>
-                </li>
-              </ul>
-            </nav>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Choose Character</Link>
+              </li>
+              <li>
+                <Link to="/preview">Preview</Link>
+              </li>
+              <li>
+                <Link to="/top5">Top 5</Link>
+              </li>
+              <li>
+                <Link to="/chat">Chat</Link>
+              </li>
+            </ul>
+          </nav>
 
-            {/* A <Switch> looks through its children <Route>s and
-              renders the first one that matches the current URL. */}
-            <Switch>
+          {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+          <Switch>
 
             <Route exact path="/">
-               <ChooseCharacter 
-               character={this.state.character}
-               selectCharacter={this.selectCharacter}
-               gender={this.state.gender}
-               health={this.state.health}
-               onSelectGender={this.handleSelectGender}
-               onSelectHealth={this.handleSelectHealth}
-               />
-               </Route>
+              <ChooseCharacter
+                character={this.state.character}
+                selectCharacter={this.selectCharacter}
+                gender={this.state.gender}
+                health={this.state.health}
+                onSelectGender={this.handleSelectGender}
+                onSelectHealth={this.handleSelectHealth}
+              />
+            </Route>
 
-              <Route exact path="/preview">
-                <Preview />
-              </Route>
+            <Route exact path="/preview">
+              <Preview />
+            </Route>
 
-              <Route exact path="/top5">
-                <Top5 characters={this.state.charData} chatImageClick={this.chatImageClick}/>
-              </Route>
+            <Route exact path="/top5">
+              <Top5 characters={this.state.charData} chatImageClick={this.chatImageClick} />
+            </Route>
 
-              <Route exact path="/chat">
-                <Chat 
-                  selectedCharacter={this.state.selectedCharacter} 
-                  whoAmI={this.state.whoAmI} 
-                  showCurrentlyTyping={this.showCurrentlyTyping}
-                  sendMessageNow={this.sendMessageNow}
-                  sentMessages={this.state.sentMessages}
-                  userMessage={this.state.userMessage}
-                />
-              </Route>
+            <Route exact path="/chat">
+              <Chat
+                selectedCharacter={this.state.selectedCharacter}
+                whoAmI={this.state.whoAmI}
+                showCurrentlyTyping={this.showCurrentlyTyping}
+                sendMessageNow={this.sendMessageNow}
+                sentMessages={this.state.sentMessages}
+                userMessage={this.state.userMessage}
+              />
+            </Route>
 
-            </Switch>
+          </Switch>
         </Router>
       </>
     );
   }
 }
 
-export default App
+  export default App
