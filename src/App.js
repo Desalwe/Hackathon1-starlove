@@ -11,7 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      demo: 0,
+      CharData: [],
       chooseCharacter: {},
       profile: {
         gender: false,
@@ -31,6 +31,15 @@ class App extends Component {
       }
     })
   };
+
+  componentDidMount() {
+  this.setState({ CharData: CharacterPackages });
+  console.log(this.state.CharData)
+  }
+
+  test = () => {
+  return console.log(this.state.CharData)
+  }
 
   render() {
 
