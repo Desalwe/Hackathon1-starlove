@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import CharacterPackages from './CharacterPackages'
+import CharacterPackages from './CharacterPackages';
 import ChooseCharacter from './ChooseCharacter';
 import Preview from './Preview';
 import Top5 from './Top5';
 import Chat from './Chat';
-
-
 
 class App extends Component {
 
@@ -54,7 +52,15 @@ class App extends Component {
       healthPreference: "",
       selectedCharacter: {},
       userMessage: "",
-      sentMessages: []
+      sentMessages: [],
+      CharData: [],
+      character: {},
+      gender: {
+        male: true,
+      },
+      healthStatus: {
+        alive: true,
+      },
     }
   }
 
@@ -68,6 +74,13 @@ class App extends Component {
 
   showCurrentlyTyping = e => {
     this.setState({userMessage: e.target.value});
+  }
+
+  selectCharacter = event => {
+    const clickedStr = event.target.value;
+    const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
+
+    this.setState({ character: clickedChar || {} });
   }
 
   sendMessageNow = e => {
@@ -112,7 +125,10 @@ class App extends Component {
             <Switch>
 
               <Route exact path="/">
-                <ChooseCharacter />
+              <ChooseCharacter
+                character={this.state.character}
+                selectCharacter={this.selectCharacter}
+              />
               </Route>
 
               <Route exact path="/preview">
@@ -139,8 +155,6 @@ class App extends Component {
       </>
     );
   }
-
-
 }
 
 export default App
