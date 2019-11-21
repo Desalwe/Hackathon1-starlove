@@ -1,10 +1,23 @@
 import React from 'react';
+import './Preview.css'
 
-const Preview = () => {
+const Preview = ({ charData }) => {
+
+
     return (
-        <h1>This is Preview, this infinite scroll page</h1>
+        <div className="container">
+            {charData.map(char => {
+                return (
+                    <div key={char.name} className="polaroid">
+                        <img src={char.image} alt="character images" />
+                        <p>{char.name}</p>
+                    </div>
+                );
+            })}
+        </div>
     )
 }
 
-
 export default Preview
+
+// return console.log(this.state.CharData[0].gender)
