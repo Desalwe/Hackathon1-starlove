@@ -48,21 +48,19 @@ class App extends Component {
           "image": "https://vignette.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png",
           "rating": 3
       },
-      genderPreference: "",
-      healthPreference: "",
       selectedCharacter: {},
       userMessage: "",
       sentMessages: [],
-      CharData: [],
+      CharacterData: [],
       character: {},
       gender: 'both genders', // can be ['male', 'female', '']
       health: 'dead and living',
     }
   }
 
-  // componentDidMount() {
-  //   this.setState({ charData: CharacterPackages });
-  // }
+  componentDidMount() {
+    this.setState({ CharacterData: CharacterPackages });
+    }
 
   chatImageClick = (character) => {
     this.setState({ selectedCharacter: character })
@@ -74,12 +72,8 @@ class App extends Component {
 
   selectCharacter = event => {
     const clickedStr = event.target.value;
-    const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
+    const clickedChar = this.state.CharacterData.find(char => char.name === clickedStr);
     this.setState ({ character: clickedChar || {} });
-  }
-
-  clickingButton = () => {
-    this.setState({ isMale: !this.state.isMale });
   }
 
   handleSelectGender = (e) => {
