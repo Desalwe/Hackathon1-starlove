@@ -55,12 +55,8 @@ class App extends Component {
       sentMessages: [],
       CharData: [],
       character: {},
-      gender: {
-        male: true,
-      },
-      healthStatus: {
-        alive: true,
-      },
+      gender: 'both genders', // can be ['male', 'female', '']
+      health: 'dead and living',
     }
   }
 
@@ -79,8 +75,19 @@ class App extends Component {
   selectCharacter = event => {
     const clickedStr = event.target.value;
     const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
+    this.setState ({ character: clickedChar || {} });
+  }
 
-    this.setState({ character: clickedChar || {} });
+  clickingButton = () => {
+    this.setState({ isMale: !this.state.isMale });
+  }
+
+  handleSelectGender = (e) => {
+    this.setState({ gender: e.target.value })
+  }
+
+  handleSelectHealth = (e) => {
+    this.setState({ health: e.target.value })
   }
 
   sendMessageNow = e => {
@@ -99,7 +106,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.sentMessages)
     return (
       <>
         <Router>
@@ -124,12 +130,16 @@ class App extends Component {
               renders the first one that matches the current URL. */}
             <Switch>
 
-              <Route exact path="/">
-              <ChooseCharacter
-                character={this.state.character}
-                selectCharacter={this.selectCharacter}
-              />
-              </Route>
+            <Route exact path="/">
+               <ChooseCharacter 
+               character={this.state.character}
+               selectCharacter={this.selectCharacter}
+               gender={this.state.gender}
+               health={this.state.health}
+               onSelectGender={this.handleSelectGender}
+               onSelectHealth={this.handleSelectHealth}
+               />
+               </Route>
 
               <Route exact path="/preview">
                 <Preview />
