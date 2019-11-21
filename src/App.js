@@ -7,32 +7,89 @@ import Top5 from './Top5';
 import Chat from './Chat';
 
 
+
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      CharData: []
+      charData: [
+        {
+          "name": "Luke Skywalker",
+          "image": "https://vignette.wikia.nocookie.net/starwars/images/2/20/LukeTLJ.jpg",
+          "rating": 5
+        },
+        {
+          "name": "C-3PO",
+          "image": "https://vignette.wikia.nocookie.net/starwars/images/3/3f/C-3PO_TLJ_Card_Trader_Award_Card.png",
+          "rating": 4
+        },
+        {
+          "name": "Darth Vader",
+          "image": "https://vignette.wikia.nocookie.net/fr.starwars/images/3/32/Dark_Vador.jpg",
+          "rating": 4
+        },
+        {
+          "name": "Leia Organa",
+          "image": "https://vignette.wikia.nocookie.net/starwars/images/f/fc/Leia_Organa_TLJ.png",
+          "rating": 5
+        },
+        {
+          "name": "Obi-Wan Kenobi",
+          "image": "https://vignette.wikia.nocookie.net/starwars/images/4/4e/ObiWanHS-SWE.jpg",
+          "rating": 5
+        },
+        {
+          "name": "Anakin Skywalker",
+          "image": "https://vignette.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png",
+          "rating": 3
+        }
+      ],
+      whoAmI: {
+          "name": "Anakin Skywalker",
+          "image": "https://vignette.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png",
+          "rating": 3
+      },
+      genderPreference: "",
+      healthPreference: "",
+      selectedCharacter: {},
+      userMessage: "",
+      sentMessages: []
     }
   }
 
-  componentDidMount() {
-    this.setState({ CharData: CharacterPackages });
-    console.log(this.state.CharData)
+  // componentDidMount() {
+  //   this.setState({ CharData: CharacterPackages });
+  // }
+
+  chatImageClick = (character) => {
+    this.setState({ selectedCharacter: character })
   }
 
-  test = () => {
-    return console.log(this.state.CharData)
+  showCurrentlyTyping = e => {
+    this.setState({userMessage: e.target.value});
   }
 
+  sendMessageNow = e => {
+    e.preventDefault();
+    if(this.state.userMessage){
+      this.setState((state) => {
+        return{
+          ...state,
+          sentMessages: [...state.sentMessages, [state.userMessage, ]],
+          userMessage: "",
+        }
+      }
+      
+      )
+    }
+  }
 
   render() {
-
+    console.log(this.state.sentMessages)
     return (
       <>
-        <button onClick={this.test} >re-render</button>
         <Router>
-          <div>
             <nav>
               <ul>
                 <li>
@@ -63,15 +120,21 @@ class App extends Component {
               </Route>
 
               <Route exact path="/top5">
-                <Top5 />
+                <Top5 characters={this.state.charData} chatImageClick={this.chatImageClick}/>
               </Route>
 
               <Route exact path="/chat">
-                <Chat />
+                <Chat 
+                  selectedCharacter={this.state.selectedCharacter} 
+                  whoAmI={this.state.whoAmI} 
+                  showCurrentlyTyping={this.showCurrentlyTyping}
+                  sendMessageNow={this.sendMessageNow}
+                  sentMessages={this.state.sentMessages}
+                  userMessage={this.state.userMessage}
+                />
               </Route>
 
             </Switch>
-          </div>
         </Router>
       </>
     );
