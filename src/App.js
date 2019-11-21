@@ -11,7 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      CharData: [],
+      charData: [],
       character: {},
       gender: {
         male: true,
@@ -23,14 +23,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({ CharData: CharacterPackages });
-    console.log(this.state.CharData)
+    this.setState({ charData: CharacterPackages });
+    console.log(this.state.charData)
   }
 
 
   selectCharacter = event => {
     const clickedStr = event.target.value;
-    const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
+    const clickedChar = this.state.charData.find(char => char.name === clickedStr);
 
     this.setState({ character: clickedChar || {} });
   }
