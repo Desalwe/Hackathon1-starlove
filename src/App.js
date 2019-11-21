@@ -15,6 +15,7 @@ class App extends Component {
       character: {},
       gender: {
         male: true,
+        female: false,
       },
       healthStatus: {
         alive: true,
@@ -34,9 +35,10 @@ class App extends Component {
   selectCharacter = event => {
     const clickedStr = event.target.value;
     const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
-
     this.setState ({ character: clickedChar || {} });
   }
+
+
 
   render() {
 
@@ -70,6 +72,9 @@ class App extends Component {
                <ChooseCharacter 
                character={this.state.character}
                selectCharacter={this.selectCharacter}
+               gender={this.state.gender}
+               genderOptions={this.genderOptions}
+               onChange={this.options}
                />
                </Route>
 
