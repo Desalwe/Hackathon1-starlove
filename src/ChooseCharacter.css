@@ -1,0 +1,33 @@
+ .CharacterSelectionContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.PickingChar {
+    text-align: center;
+}
+
+.Force {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.GenderText-1 {
+    text-align: center;
+}
+
+.GenderText-2 {
+    text-align: center;
+}
+
+.HealthText {
+    text-align: center;
+}
+
+.DeadWarning {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
