@@ -73,7 +73,6 @@ class App extends Component {
         (characterPackage) => {
           if (characterPackage.name === ratedCharacter.name) {
             characterPackage.rating = rating;
-            console.log(characterPackage);
           }
 
           return characterPackage;
@@ -84,7 +83,6 @@ class App extends Component {
         characterPackages: updatedCharacterPackages,
       };
     });
-    console.log(this.state.characterPackages);
   };
 
 

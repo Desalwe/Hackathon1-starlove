@@ -2,9 +2,16 @@ import React from 'react';
 import './Top5.css'
 import { Link } from 'react-router-dom'
 
+
+
 const Top5 = ({ characterPackages, chatImageClick }) => {
-    let sortedCharacterPackages = characterPackages.sort((a, b) => b.rating - a.rating)
+    let filteredCharacterPackages = characterPackages.filter(characterPackage => {
+        return(characterPackage.rating)
+    })
+    console.log(filteredCharacterPackages)
+    let sortedCharacterPackages = filteredCharacterPackages.sort((a, b) => b.rating - a.rating)
     let top5CharacterPackages = sortedCharacterPackages.slice(0, 5)
+
 
     return (
         <>
