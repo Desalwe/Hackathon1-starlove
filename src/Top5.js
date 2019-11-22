@@ -12,6 +12,10 @@ const Top5 = ({ characterPackages, chatImageClick }) => {
     let sortedCharacterPackages = filteredCharacterPackages.sort((a, b) => b.rating - a.rating)
     let top5CharacterPackages = sortedCharacterPackages.slice(0, 5)
 
+<<<<<<< HEAD
+    console.log(sortedCharacterPackages)
+=======
+>>>>>>> master
 
     return (
         <>

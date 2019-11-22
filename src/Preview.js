@@ -9,6 +9,24 @@ const Preview = ({ characterPackages, gender, health, onClickStar }) => {
             && (characterHealth === health || health === "dead and living"))
     })
 
+
+    let divSelected = null;
+    const SelectOrUnSelect = (e) => {
+        if (divSelected != null) divSelected.className = 'star-not-selected';
+        divSelected = e.target;
+        e.target.className = 'star-selected';
+        const arr = document.getElementsByClassName("Rating")[0].childNodes
+
+        for (let i = 0; i < arr.length; i++) {
+            if (Number(arr[i].id) <= Number(e.target.id)) {
+                console.log('hello')
+                arr[i].classList.remove('star-not-selected');
+                arr[i].classList.add('star-selected');
+            }
+        }
+    }
+
+
     return (
         <div className="container">
 
@@ -23,11 +41,11 @@ const Preview = ({ characterPackages, gender, health, onClickStar }) => {
                                 <img src={characterPackage.image} alt="character images" />
                                 <p>{characterPackage.name}</p>
                                 <div className="Rating" aria-label="Rating of this item is 3 out of 5">
-                                    <img onClick={() => onClickStar(characterPackage, 1)} src="/static/assets/star.png" className="Rating--Star Rating--Star__active" alt="gold star" />
-                                    <img onClick={() => onClickStar(characterPackage, 2)} src="/static/assets/star.png" className="Rating--Star Rating--Star__active" alt="gold star" />
-                                    <img onClick={() => onClickStar(characterPackage, 3)} src="/static/assets/star.png" className="Rating--Star Rating--Star__active" alt="gold star" />
-                                    <img onClick={() => onClickStar(characterPackage, 4)} src="/static/assets/star.png" className="Rating--Star" alt="gold star" />
-                                    <img onClick={() => onClickStar(characterPackage, 5)} src="/static/assets/star.png" className="Rating--Star" alt="gold star" />
+                                    <img className="star-not-selected star-selected" id="0" onClick={() => onClickStar(characterPackage, 1)} src="/static/assets/star.png" alt="gold star" onClick={SelectOrUnSelect} />
+                                    <img className="star-not-selected star-selected" id="1" onClick={() => onClickStar(characterPackage, 2)} src="/static/assets/star.png" alt="gold star" onClick={SelectOrUnSelect} />
+                                    <img className="star-not-selected star-selected" id="2" onClick={() => onClickStar(characterPackage, 3)} src="/static/assets/star.png" alt="gold star" onClick={SelectOrUnSelect} />
+                                    <img className="star-not-selected star-selected" id="3" onClick={() => onClickStar(characterPackage, 4)} src="/static/assets/star.png" alt="gold star" onClick={SelectOrUnSelect} />
+                                    <img className="star-not-selected star-selected" id="4" onClick={() => onClickStar(characterPackage, 5)} src="/static/assets/star.png" alt="gold star" onClick={SelectOrUnSelect} />
                                 </div>
                             </div>
 

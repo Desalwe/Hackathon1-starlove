@@ -104,18 +104,18 @@ class App extends Component {
             <ul>
               <li>
                 <Link to="/">
-                <img className="icon"src={cog}></img>
+                  <img className="icon" src={cog}></img>
                 </Link>
               </li>
               <li>
                 <Link to="/preview">
-                  <img className="icon"src={heartnav}></img>
+                  <img className="icon" src={heartnav}></img>
                 </Link>
               </li>
               <li>
                 <Link to="/top5">
-                  <img className="icon"src={top5icon}></img>
-                </Link>  
+                  <img className="icon" src={top5icon}></img>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -145,7 +145,10 @@ class App extends Component {
             </Route>
 
             <Route exact path="/top5">
-              <Top5 characterPackages={this.state.characterPackages} chatImageClick={this.chatImageClick} />
+              <Top5
+                characterPackages={this.state.characterPackages}
+                chatImageClick={this.chatImageClick}
+              />
             </Route>
 
             <Route exact path="/chat">
