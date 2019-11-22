@@ -5,6 +5,11 @@ import ChooseCharacter from './ChooseCharacter';
 import Preview from './Preview';
 import Top5 from './Top5';
 import Chat from './Chat';
+import cog from './cog1.jpg';
+import heartnav from './heart-nav.png';
+import top5icon from './top5-icon.jpg'
+import './App.css';
+
 
 class App extends Component {
 
@@ -16,10 +21,12 @@ class App extends Component {
       sentMessages: [],
       characterPackages: [],
       userCharacter: {},
-      gender: 'both genders', // can be ['male', 'female', 'both genders']
-      health: 'dead and living', // can be ['dead', 'living', 'dead and living']
+      gender: 'both genders', // can be ['male', 'female', 'both genders'] let's keep it the same name as in 'value' and 'checked' so the default appears as checked in ChooseCharacter.js
+      health: 'living',
     }
   }
+
+  // Our API lies down here
 
   componentDidMount() {
     this.setState({ characterPackages: CharacterPackages });
@@ -29,6 +36,7 @@ class App extends Component {
     this.setState({ chattingCharacter: characterPackage })
   }
 
+  // method to select a character through the page (user's profile)
 
   selectCharacter = event => {
     const clickedStr = event.target.value;
@@ -40,9 +48,13 @@ class App extends Component {
     this.setState({ userMessage: e.target.value });
   }
 
+  // Gender selection method
+
   handleSelectGender = (e) => {
     this.setState({ gender: e.target.value })
   }
+
+  // Dead or Alive selection method (same method as Gender but different names)
 
   handleSelectHealth = (e) => {
     this.setState({ health: e.target.value })
@@ -63,8 +75,6 @@ class App extends Component {
     }
   }
 
-
-
   // ALEX --> INSERT RATING STATE INTO EACH CHARACTER-PACKAGE WHEN THEIR STARS ARE CLICKED ON
 
   onClickStar = (ratedCharacter, rating) => {
@@ -73,7 +83,6 @@ class App extends Component {
         (characterPackage) => {
           if (characterPackage.name === ratedCharacter.name) {
             characterPackage.rating = rating;
-            console.log(characterPackage);
           }
 
           return characterPackage;
@@ -84,31 +93,29 @@ class App extends Component {
         characterPackages: updatedCharacterPackages,
       };
     });
-    // console.log(this.state.characterPackages);
   };
-
-
-
-
-
 
   render() {
     return (
       <>
         <Router>
           <nav>
+
             <ul>
               <li>
-                <Link to="/">Choose Character</Link>
+                <Link to="/">
+                  <img className="icon" src={cog}></img>
+                </Link>
               </li>
               <li>
-                <Link to="/preview">Preview</Link>
+                <Link to="/preview">
+                  <img className="icon" src={heartnav}></img>
+                </Link>
               </li>
               <li>
-                <Link to="/top5">Top 5</Link>
-              </li>
-              <li>
-                <Link to="/chat">Chat</Link>
+                <Link to="/top5">
+                  <img className="icon" src={top5icon}></img>
+                </Link>
               </li>
             </ul>
           </nav>

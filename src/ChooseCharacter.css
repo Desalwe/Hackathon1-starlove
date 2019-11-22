@@ -1,33 +1,45 @@
  .CharacterSelectionContainer {
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
-.PickingChar {
-    text-align: center;
+.YouLookPretty {
+    padding-top: 2vh;
+    height: 300px;
 }
 
 .Force {
-    text-align: center;
     font-weight: bold;
     font-size: 18px;
 }
 
-.GenderText-1 {
-    text-align: center;
+.May {
+    color: #989898;
 }
 
-.GenderText-2 {
-    text-align: center;
-}
-
-.HealthText {
-    text-align: center;
-}
-
-.DeadWarning {
-    text-align: center;
+.DeadWarning-1 {
     color: red;
     font-weight: bold;
     font-size: 20px;
+}
+
+.DeadWarning-2 {
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.PreviewButton {
+    padding-top: 3vh;
+}
+
+a:link {
+    color:black;
+    text-decoration: none;
+  }
+
+a:visited {
+    color: black;
+    text-decoration: none;
 }

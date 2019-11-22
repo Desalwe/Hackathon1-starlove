@@ -14,9 +14,15 @@ const ChooseCharacter = ({ userCharacter, selectCharacter, gender, health, onSel
                     <option value="Darth Vader">Darth Vader</option>
                 </select>
             </div>
+            <div className="YourPhoto">
+            {
+                    userCharacter.name && <img className="YouLookPretty" src={userCharacter.image}></img>
+                }
+                {/* Due to "userCharacter.name &&", this only appears if we picked a character */}
+            </div>
             <div className="Force">
                 {
-                    userCharacter.name && <p>May the force be with you, {userCharacter.name}!</p>
+                    userCharacter.name && <p className="May">May the force be with you, {userCharacter.name}!</p>
                 }
             </div>
             <div className="Gender">
@@ -25,6 +31,7 @@ const ChooseCharacter = ({ userCharacter, selectCharacter, gender, health, onSel
                     <Form.Field>
                         <p className="GenderText-2">You are currently looking for <b>{gender}</b>.</p>
                     </Form.Field>
+                    {/* Gender radio buttons and text below*/}
                     <Form.Field>
                         <Radio
                             label='Male and Female'
@@ -59,6 +66,7 @@ const ChooseCharacter = ({ userCharacter, selectCharacter, gender, health, onSel
                     <Form.Field>
                         <p className="HealthText">You are currently looking for <b>{health}</b> beings.</p>
                     </Form.Field>
+                    {/* Dead or Alive radio buttons and text below*/}
                     <Form.Field>
                         <Radio
                             label='Dead and Alive'
@@ -88,11 +96,21 @@ const ChooseCharacter = ({ userCharacter, selectCharacter, gender, health, onSel
                     </Form.Field>
                 </Form>
             </div>
-            <div className="DeadWarning">
+            <div className="DeadWarning-1">
+                {
+                    health === 'dead and living' && <p>Are you sure you want to look for dead beings, {userCharacter.name}?</p>
+                }
+            </div>
+            <div className="DeadWarning-2">
                 {
                     health === 'dead' && <p>Are you sure you want to look for dead beings, {userCharacter.name}?</p>
                 }
+                 {/* Due to "health === 'dead' &&", this only appears if we select that we want to see dead characters */}
             </div>
+            {
+                    userCharacter.name && <div className="PreviewButton"><button><a href='/preview'>See some sexy space soldiers</a></button></div>
+                }
+                {/* This button will only appear once a character is picked */}
         </div>
     )
 };
