@@ -129,7 +129,7 @@
   transform: translate(-50%, -50%);
   text-align: center;
   width: 87%;
-  font-size: calc(15px + 4vw);
+  font-size: calc(15px + 3.5vw);
   font-family: 'Indie Flower', cursive;
 }
 

@@ -2,22 +2,22 @@ import React from 'react';
 import './Top5.css'
 import { Link } from 'react-router-dom'
 
-const Top5 = ({ characters, chatImageClick}) => {
+const Top5 = ({ characterPackages, chatImageClick }) => {
     return (
-    <>
-        {
-        characters.map(character => {
-        return (
-            <div className="top5-container">
-                <Link onClick={() => chatImageClick(character)} to="/chat">
-                    <img  className="character-icon" key={character.image} src={character.image}></img>
-                </Link>
-                <p className="character-name" key={character.name}>{character.name}</p>
-            </div>
-        )
-        })
-    }
-    </>
+        <>
+            {
+                characterPackages.map(characterPackage => {
+                    return (
+                        <div className="top5-container">
+                            <Link onClick={() => chatImageClick(characterPackage)} to="/chat">
+                                <img className="character-icon" key={characterPackage.image} src={characterPackage.image}></img>
+                            </Link>
+                            <p className="character-name" key={characterPackage.name}>{characterPackage.name}</p>
+                        </div>
+                    )
+                })
+            }
+        </>
     )
 }
 
