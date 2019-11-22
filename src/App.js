@@ -29,14 +29,15 @@ class App extends Component {
     this.setState({ chattingCharacter: characterPackage })
   }
 
-  showCurrentlyTyping = e => {
-    this.setState({ userMessage: e.target.value });
-  }
 
   selectCharacter = event => {
     const clickedStr = event.target.value;
     const clickedChar = this.state.characterPackages.find(char => char.name === clickedStr);
     this.setState({ userCharacter: clickedChar || {} });
+  }
+
+  showCurrentlyTyping = e => {
+    this.setState({ userMessage: e.target.value });
   }
 
   handleSelectGender = (e) => {
@@ -66,11 +67,11 @@ class App extends Component {
 
   // ALEX --> INSERT RATING STATE INTO EACH CHARACTER-PACKAGE WHEN THEIR STARS ARE CLICKED ON
 
-  onClickStar = (ratedChar, rating) => {
+  onClickStar = (ratedCharacter, rating) => {
     this.setState(state => {
       const updatedCharacterPackages = state.CharacterPackages.map(
         (characterPackage) => {
-          if (state.characterPackage.name === ratedChar.name) {
+          if (state.characterPackage.name === ratedCharacter.name) {
             characterPackage.rating = rating;
           }
           return characterPackage;
@@ -111,7 +112,7 @@ class App extends Component {
           </nav>
 
           {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+              renders the first one that matches the current URL. */}
           <Switch>
 
             <Route exact path="/">
