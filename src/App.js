@@ -16,8 +16,8 @@ class App extends Component {
       sentMessages: [],
       characterPackages: [],
       userCharacter: {},
-      gender: 'both genders', // can be ['male', 'female', '']
-      health: 'dead and living',
+      gender: 'both genders', // can be ['male', 'female', 'both genders']
+      health: 'dead and living', // can be ['dead', 'living', 'dead and living']
     }
   }
 
@@ -75,6 +75,7 @@ class App extends Component {
             characterPackage.rating = rating;
             console.log(characterPackage);
           }
+
           return characterPackage;
         }
       );
@@ -83,6 +84,7 @@ class App extends Component {
         characterPackages: updatedCharacterPackages,
       };
     });
+    console.log(this.state.characterPackages);
   };
 
 
@@ -129,6 +131,8 @@ class App extends Component {
             <Route exact path="/preview">
               <Preview
                 characterPackages={this.state.characterPackages}
+                gender={this.state.gender}
+                health={this.state.health}
                 onClickStar={this.onClickStar}
               />
             </Route>

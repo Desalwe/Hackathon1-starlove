@@ -38,8 +38,8 @@ const ChooseCharacter = ({ userCharacter, selectCharacter, gender, health, onSel
                         <Radio
                             label='Male'
                             name='radioGroup'
-                            value='males only'
-                            checked={gender === 'males only'}
+                            value='male'
+                            checked={gender === 'male'}
                             onChange={onSelectGender}
                         />
                     </Form.Field>
@@ -47,8 +47,8 @@ const ChooseCharacter = ({ userCharacter, selectCharacter, gender, health, onSel
                         <Radio
                             label='Female'
                             name='radioGroup'
-                            value='females only'
-                            checked={gender === 'females only'}
+                            value='female'
+                            checked={gender === 'female'}
                             onChange={onSelectGender}
                         />
                     </Form.Field>
