@@ -63,111 +63,134 @@ class App extends Component {
   componentDidMount() {
     this.setState({ charData: CharacterPackages });
     console.log(this.state.charData)
+  }
 
-    chatImageClick = (character) => {
-      this.setState({ selectedCharacter: character })
-    }
+  chatImageClick = (character) => {
+    this.setState({ selectedCharacter: character })
+  }
 
-    showCurrentlyTyping = e => {
-      this.setState({ userMessage: e.target.value });
-    }
+  showCurrentlyTyping = e => {
+    this.setState({ userMessage: e.target.value });
+  }
 
-    selectCharacter = event => {
-      const clickedStr = event.target.value;
+  selectCharacter = event => {
+    const clickedStr = event.target.value;
 
-      // const clickedChar = this.state.charData.find(char => char.name === clickedStr);
+    // const clickedChar = this.state.charData.find(char => char.name === clickedStr);
 
-      const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
-      this.setState({ character: clickedChar || {} });
-    }
+    const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
+    this.setState({ character: clickedChar || {} });
+  }
 
-    clickingButton = () => {
-      this.setState({ isMale: !this.state.isMale });
-    }
+  clickingButton = () => {
+    this.setState({ isMale: !this.state.isMale });
+  }
 
-    handleSelectGender = (e) => {
-      this.setState({ gender: e.target.value })
-    }
+  handleSelectGender = (e) => {
+    this.setState({ gender: e.target.value })
+  }
 
-    handleSelectHealth = (e) => {
-      this.setState({ health: e.target.value })
-    }
+  handleSelectHealth = (e) => {
+    this.setState({ health: e.target.value })
+  }
 
-    sendMessageNow = e => {
-      e.preventDefault();
-      if (this.state.userMessage) {
-        this.setState((state) => {
-          return {
-            ...state,
-            sentMessages: [...state.sentMessages, [state.userMessage,]],
-            userMessage: "",
-          }
+  sendMessageNow = e => {
+    e.preventDefault();
+    if (this.state.userMessage) {
+      this.setState((state) => {
+        return {
+          ...state,
+          sentMessages: [...state.sentMessages, [state.userMessage,]],
+          userMessage: "",
         }
-
-        )
       }
-    }
 
-    render() {
-      return (
-        <>
-          <Router>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Choose Character</Link>
-                </li>
-                <li>
-                  <Link to="/preview">Preview</Link>
-                </li>
-                <li>
-                  <Link to="/top5">Top 5</Link>
-                </li>
-                <li>
-                  <Link to="/chat">Chat</Link>
-                </li>
-              </ul>
-            </nav>
-
-            {/* A <Switch> looks through its children <Route>s and
-              renders the first one that matches the current URL. */}
-            <Switch>
-
-              <Route exact path="/">
-                <ChooseCharacter
-                  character={this.state.character}
-                  selectCharacter={this.selectCharacter}
-                  gender={this.state.gender}
-                  health={this.state.health}
-                  onSelectGender={this.handleSelectGender}
-                  onSelectHealth={this.handleSelectHealth}
-                />
-              </Route>
-
-              <Route exact path="/preview">
-                <Preview />
-              </Route>
-
-              <Route exact path="/top5">
-                <Top5 characters={this.state.charData} chatImageClick={this.chatImageClick} />
-              </Route>
-
-              <Route exact path="/chat">
-                <Chat
-                  selectedCharacter={this.state.selectedCharacter}
-                  whoAmI={this.state.whoAmI}
-                  showCurrentlyTyping={this.showCurrentlyTyping}
-                  sendMessageNow={this.sendMessageNow}
-                  sentMessages={this.state.sentMessages}
-                  userMessage={this.state.userMessage}
-                />
-              </Route>
-
-            </Switch>
-          </Router>
-        </>
-      );
+      )
     }
   }
 
-  export default App
+  // ALEX'S --> PUTTING RATING INTO STATE WHEN EACH CHARACTER IS 'RATED'
+  // onClickStar = Rating => {
+  //   this.setState(state => {
+  //     const updatedCharData = state.charData.map(
+  //       (charPackage, index) => {
+  //         if (state.step === i) {
+  //           questionPackage.user_answer = userAnswer;
+  //         }
+  //         return questionPackage;
+  //       }
+  //     );
+
+  //     return {
+  //       ...state,
+  //       questionPackages: updatedQuestionPackages,
+  //       localScore: countScore(updatedQuestionPackages)
+  //     };
+  //   });
+  // };
+
+
+
+  render() {
+    return (
+      <>
+        <Router>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Choose Character</Link>
+              </li>
+              <li>
+                <Link to="/preview">Preview</Link>
+              </li>
+              <li>
+                <Link to="/top5">Top 5</Link>
+              </li>
+              <li>
+                <Link to="/chat">Chat</Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. */}
+          <Switch>
+
+            <Route exact path="/">
+              <ChooseCharacter
+                character={this.state.character}
+                selectCharacter={this.selectCharacter}
+                gender={this.state.gender}
+                health={this.state.health}
+                onSelectGender={this.handleSelectGender}
+                onSelectHealth={this.handleSelectHealth}
+              />
+            </Route>
+
+            <Route exact path="/preview">
+              <Preview charData={this.state.charData} />
+            </Route>
+
+            <Route exact path="/top5">
+              <Top5 characters={this.state.charData} chatImageClick={this.chatImageClick} />
+            </Route>
+
+            <Route exact path="/chat">
+              <Chat
+                selectedCharacter={this.state.selectedCharacter}
+                whoAmI={this.state.whoAmI}
+                showCurrentlyTyping={this.showCurrentlyTyping}
+                sendMessageNow={this.sendMessageNow}
+                sentMessages={this.state.sentMessages}
+                userMessage={this.state.userMessage}
+              />
+            </Route>
+
+          </Switch>
+        </Router>
+      </>
+    );
+  }
+}
+
+export default App

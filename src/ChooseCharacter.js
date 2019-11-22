@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form, Radio } from 'semantic-ui-react'
+import { Form, Radio } from 'semantic-ui-react';
 
-const ChooseCharacter = ({ character, selectCharacter, gender, health, onSelectGender, onSelectHealth}) => {  
+const ChooseCharacter = ({ character, selectCharacter, gender, health, onSelectGender, onSelectHealth }) => {
     return (
         <div className="CharacterSelectionContainer">
             <div className="PickingChar">
@@ -12,11 +12,9 @@ const ChooseCharacter = ({ character, selectCharacter, gender, health, onSelectG
                     <option value="Yoda">Yoda</option>
                     <option value="Darth Vader">Darth Vader</option>
                 </select>
-                {
-                    character.name && <p>May the force be with you, {character.name}!</p>
-                }
+                {character.name && <p>May the force be with you, {character.name}!</p>}
             </div>
-                <p>What are you looking for?</p>
+            <p>What are you looking for?</p>
             <div className="Gender">
                 <Form>
                     <Form.Field>
