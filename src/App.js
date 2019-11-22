@@ -48,43 +48,64 @@ class App extends Component {
         "image": "https://vignette.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png",
         "rating": 3
       },
-      genderPreference: "",
-      healthPreference: "",
       selectedCharacter: {},
       userMessage: "",
       sentMessages: [],
-      CharData: [],
+      CharacterData: [],
       character: {},
       gender: 'both genders', // can be ['male', 'female', '']
       health: 'dead and living',
     }
   }
 
-  componentDidMount() {
-    this.setState({ charData: CharacterPackages });
-    console.log(this.state.charData)
-  }
+  //  =========
 
-  chatImageClick = (character) => {
-    this.setState({ selectedCharacter: character })
-  }
+  //   componentDidMount() {
+  //     this.setState({ charData: CharacterPackages });
+  //     console.log(this.state.charData)
+  //   }
 
-  showCurrentlyTyping = e => {
-    this.setState({ userMessage: e.target.value });
-  }
+  //   chatImageClick = (character) => {
+  //     this.setState({ selectedCharacter: character })
+  //   }
 
-  selectCharacter = event => {
-    const clickedStr = event.target.value;
+  //   showCurrentlyTyping = e => {
+  //     this.setState({ userMessage: e.target.value });
+  //   }
 
-    // const clickedChar = this.state.charData.find(char => char.name === clickedStr);
+  //   selectCharacter = event => {
+  //     const clickedStr = event.target.value;
 
-    const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
-    this.setState({ character: clickedChar || {} });
-  }
+  //     // const clickedChar = this.state.charData.find(char => char.name === clickedStr);
 
-  clickingButton = () => {
-    this.setState({ isMale: !this.state.isMale });
-  }
+  //     const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
+  //     this.setState({ character: clickedChar || {} });
+  //   }
+
+  //   clickingButton = () => {
+  //     this.setState({ isMale: !this.state.isMale });
+
+  //     ============
+
+  // componentDidMount() {
+  //   this.setState({ CharacterData: CharacterPackages });
+  //   }
+
+  //   chatImageClick = (character) => {
+  //     this.setState({ selectedCharacter: character })
+  //   }
+
+  //   showCurrentlyTyping = e => {
+  //     this.setState({ userMessage: e.target.value });
+  //   }
+
+  //   selectCharacter = event => {
+  //     const clickedStr = event.target.value;
+  //     const clickedChar = this.state.CharacterData.find(char => char.name === clickedStr);
+  //     this.setState ({ character: clickedChar || {} });
+  //   }
+
+  // ===========
 
   handleSelectGender = (e) => {
     this.setState({ gender: e.target.value })

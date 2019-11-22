@@ -1,24 +1,29 @@
 import React from 'react';
-import { Form, Radio } from 'semantic-ui-react';
+import './ChooseCharacter.css'
+import { Form, Radio } from 'semantic-ui-react'
 
 const ChooseCharacter = ({ character, selectCharacter, gender, health, onSelectGender, onSelectHealth }) => {
     return (
         <div className="CharacterSelectionContainer">
             <div className="PickingChar">
-                <h1>Please, pick your character</h1>
+                <h1>Pick your character</h1>
                 <select onChange={selectCharacter} >
                     <option value="">Please select...</option>
                     <option value="Luke Skywalker">Luke Skywalker</option>
                     <option value="Yoda">Yoda</option>
                     <option value="Darth Vader">Darth Vader</option>
                 </select>
-                {character.name && <p>May the force be with you, {character.name}!</p>}
             </div>
-            <p>What are you looking for?</p>
+            <div className="Force">
+                {
+                    character.name && <p>May the force be with you, {character.name}!</p>
+                }
+            </div>
             <div className="Gender">
+                <p className="GenderText-1">What are you looking for?</p>
                 <Form>
                     <Form.Field>
-                        You are currently looking for <b>{gender}</b>.
+                        <p className="GenderText-2">You are currently looking for <b>{gender}</b>.</p>
                     </Form.Field>
                     <Form.Field>
                         <Radio
@@ -52,7 +57,7 @@ const ChooseCharacter = ({ character, selectCharacter, gender, health, onSelectG
             <div className="Health">
                 <Form>
                     <Form.Field>
-                        You are currently looking for <b>{health}</b> beings.
+                        <p className="HealthText">You are currently looking for <b>{health}</b> beings.</p>
                     </Form.Field>
                     <Form.Field>
                         <Radio
@@ -82,6 +87,8 @@ const ChooseCharacter = ({ character, selectCharacter, gender, health, onSelectG
                         />
                     </Form.Field>
                 </Form>
+            </div>
+            <div className="DeadWarning">
                 {
                     health === 'dead' && <p>Are you sure you want to look for dead beings, {character.name}?</p>
                 }
