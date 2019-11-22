@@ -22,7 +22,7 @@ const Top5 = ({ characterPackages, chatImageClick }) => {
                             <Link onClick={() => chatImageClick(characterPackage)} to="/chat">
                                 <img className="character-icon" key={characterPackage.image} src={characterPackage.image}></img>
                             </Link>
-                            <p className="character-name" key={characterPackage.name}>{characterPackage.name}</p>
+                    <p className="character-name" key={characterPackage.name}>{characterPackage.name} rating:{characterPackage.rating}*</p>
                         </div>
                     )
                 })
