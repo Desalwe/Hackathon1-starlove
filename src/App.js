@@ -74,15 +74,15 @@ class App extends Component {
 
   onClickStar = (ratedCharacter, rating) => {
     this.setState(state => {
-      const updatedCharacterPackages = state.CharacterPackages.map(
+      const updatedCharacterPackages = state.characterPackages.map(
         (characterPackage) => {
-          if (state.characterPackage.name === ratedCharacter.name) {
+          if (characterPackage.name === ratedCharacter.name) {
             characterPackage.rating = rating;
           }
+
           return characterPackage;
         }
       );
-
       return {
         ...state,
         characterPackages: updatedCharacterPackages,
@@ -130,6 +130,8 @@ class App extends Component {
             <Route exact path="/preview">
               <Preview
                 characterPackages={this.state.characterPackages}
+                gender={this.state.gender}
+                health={this.state.health}
                 onClickStar={this.onClickStar}
               />
             </Route>

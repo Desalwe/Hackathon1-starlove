@@ -1,17 +1,21 @@
 import React from 'react';
 import './Preview.css'
 
-const Preview = ({ characterPackages, onClickStar }) => {
+const Preview = ({ characterPackages, gender, health, onClickStar }) => {
 
+    const filteredCharacterPackages = characterPackages.filter((characterPackage) => {
+        const characterHealth = typeof characterPackage.died === "undefined" ? "living" : "dead"
+        return ((characterPackage.gender === gender || gender === "both genders")
+            && (characterHealth === health || health === "dead and living"))
+    })
 
     return (
         <div className="container">
 
-            {characterPackages.map(characterPackage => {
+            {filteredCharacterPackages.map(characterPackage => {
                 const BMI = characterPackage.height && characterPackage.mass ? (Number(characterPackage.mass) / ((Number(characterPackage.height) * Number(characterPackage.height)))).toFixed(1) : "wouldn't you like to know, cheeky!";
 
                 return (
-
                     <div key={characterPackage.name} className="flip-box">
                         <div className="flip-box-inner">
 
