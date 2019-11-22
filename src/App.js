@@ -16,10 +16,12 @@ class App extends Component {
       sentMessages: [],
       characterPackages: [],
       userCharacter: {},
-      gender: 'both genders', // can be ['male', 'female', '']
-      health: 'dead and living',
+      gender: 'both genders', // can be ['male', 'female', 'both genders'] let's keep it the same name as in 'value' and 'checked' so the default appears as checked in ChooseCharacter.js
+      health: 'living',
     }
   }
+
+  // Our API lies down here
 
   componentDidMount() {
     this.setState({ characterPackages: CharacterPackages });
@@ -29,6 +31,7 @@ class App extends Component {
     this.setState({ chattingCharacter: characterPackage })
   }
 
+  // method to select a character through the page (user's profile)
 
   selectCharacter = event => {
     const clickedStr = event.target.value;
@@ -40,9 +43,13 @@ class App extends Component {
     this.setState({ userMessage: e.target.value });
   }
 
+  // Gender selection method
+
   handleSelectGender = (e) => {
     this.setState({ gender: e.target.value })
   }
+
+  // Dead or Alive selection method (same method as Gender but different names)
 
   handleSelectHealth = (e) => {
     this.setState({ health: e.target.value })
@@ -62,8 +69,6 @@ class App extends Component {
       )
     }
   }
-
-
 
   // ALEX --> INSERT RATING STATE INTO EACH CHARACTER-PACKAGE WHEN THEIR STARS ARE CLICKED ON
 
@@ -85,16 +90,12 @@ class App extends Component {
     });
   };
 
-
-
-
-
-
   render() {
     return (
       <>
         <Router>
           <nav>
+
             <ul>
               <li>
                 <Link to="/">Choose Character</Link>
