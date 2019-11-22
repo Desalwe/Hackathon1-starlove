@@ -58,23 +58,54 @@ class App extends Component {
     }
   }
 
-componentDidMount() {
-  this.setState({ CharacterData: CharacterPackages });
-  }
+  //  =========
 
-  chatImageClick = (character) => {
-    this.setState({ selectedCharacter: character })
-  }
+  //   componentDidMount() {
+  //     this.setState({ charData: CharacterPackages });
+  //     console.log(this.state.charData)
+  //   }
 
-  showCurrentlyTyping = e => {
-    this.setState({ userMessage: e.target.value });
-  }
+  //   chatImageClick = (character) => {
+  //     this.setState({ selectedCharacter: character })
+  //   }
 
-  selectCharacter = event => {
-    const clickedStr = event.target.value;
-    const clickedChar = this.state.CharacterData.find(char => char.name === clickedStr);
-    this.setState ({ character: clickedChar || {} });
-  }
+  //   showCurrentlyTyping = e => {
+  //     this.setState({ userMessage: e.target.value });
+  //   }
+
+  //   selectCharacter = event => {
+  //     const clickedStr = event.target.value;
+
+  //     // const clickedChar = this.state.charData.find(char => char.name === clickedStr);
+
+  //     const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
+  //     this.setState({ character: clickedChar || {} });
+  //   }
+
+  //   clickingButton = () => {
+  //     this.setState({ isMale: !this.state.isMale });
+
+  //     ============
+
+  // componentDidMount() {
+  //   this.setState({ CharacterData: CharacterPackages });
+  //   }
+
+  //   chatImageClick = (character) => {
+  //     this.setState({ selectedCharacter: character })
+  //   }
+
+  //   showCurrentlyTyping = e => {
+  //     this.setState({ userMessage: e.target.value });
+  //   }
+
+  //   selectCharacter = event => {
+  //     const clickedStr = event.target.value;
+  //     const clickedChar = this.state.CharacterData.find(char => char.name === clickedStr);
+  //     this.setState ({ character: clickedChar || {} });
+  //   }
+
+  // ===========
 
   handleSelectGender = (e) => {
     this.setState({ gender: e.target.value })
@@ -99,6 +130,28 @@ componentDidMount() {
     }
   }
 
+  // ALEX'S --> PUTTING RATING INTO STATE WHEN EACH CHARACTER IS 'RATED'
+  // onClickStar = Rating => {
+  //   this.setState(state => {
+  //     const updatedCharData = state.charData.map(
+  //       (charPackage, index) => {
+  //         if (state.step === i) {
+  //           questionPackage.user_answer = userAnswer;
+  //         }
+  //         return questionPackage;
+  //       }
+  //     );
+
+  //     return {
+  //       ...state,
+  //       questionPackages: updatedQuestionPackages,
+  //       localScore: countScore(updatedQuestionPackages)
+  //     };
+  //   });
+  // };
+
+
+
   render() {
     return (
       <>
@@ -121,7 +174,7 @@ componentDidMount() {
           </nav>
 
           {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+              renders the first one that matches the current URL. */}
           <Switch>
 
             <Route exact path="/">
@@ -136,7 +189,7 @@ componentDidMount() {
             </Route>
 
             <Route exact path="/preview">
-              <Preview />
+              <Preview charData={this.state.charData} />
             </Route>
 
             <Route exact path="/top5">
@@ -161,4 +214,4 @@ componentDidMount() {
   }
 }
 
-  export default App
+export default App

@@ -2,7 +2,7 @@ import React from 'react';
 import './ChooseCharacter.css'
 import { Form, Radio } from 'semantic-ui-react'
 
-const ChooseCharacter = ({ character, selectCharacter, gender, health, onSelectGender, onSelectHealth}) => {  
+const ChooseCharacter = ({ character, selectCharacter, gender, health, onSelectGender, onSelectHealth }) => {
     return (
         <div className="CharacterSelectionContainer">
             <div className="PickingChar">

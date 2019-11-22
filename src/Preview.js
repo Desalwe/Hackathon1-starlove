@@ -1,6 +1,7 @@
 import React from 'react';
 import './Preview.css'
 
+
 const Preview = ({ charData }) => {
 
 
@@ -19,11 +20,11 @@ const Preview = ({ charData }) => {
                                 <img src={char.image} alt="character images" />
                                 <p>{char.name}</p>
                                 <div className="Rating" aria-label="Rating of this item is 3 out of 5">
-                                    <img src="/static/assets/star.png" className="Rating--Star Rating--Star__active" alt="gold star" />
-                                    <img src="/static/assets/star.png" className="Rating--Star Rating--Star__active" alt="gold star" />
-                                    <img src="/static/assets/star.png" className="Rating--Star Rating--Star__active" alt="gold star" />
-                                    <img src="/static/assets/star.png" className="Rating--Star" alt="gold star" />
-                                    <img src="/static/assets/star.png" className="Rating--Star" alt="gold star" />
+                                    <img id={char.name} src="/static/assets/star.png" className="Rating--Star Rating--Star__active" alt="gold star1" />
+                                    <img id={char.name} src="/static/assets/star.png" className="Rating--Star Rating--Star__active" alt="gold star2" />
+                                    <img id={char.name} src="/static/assets/star.png" className="Rating--Star Rating--Star__active" alt="gold star3" />
+                                    <img id={char.name} src="/static/assets/star.png" className="Rating--Star" alt="gold star4" />
+                                    <img id={char.name} src="/static/assets/star.png" className="Rating--Star" alt="gold star5" />
                                 </div>
                             </div>
 
