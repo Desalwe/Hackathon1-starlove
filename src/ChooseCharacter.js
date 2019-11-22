@@ -2,7 +2,7 @@ import React from 'react';
 import './ChooseCharacter.css'
 import { Form, Radio } from 'semantic-ui-react'
 
-const ChooseCharacter = ({ character, selectCharacter, gender, health, onSelectGender, onSelectHealth }) => {
+const ChooseCharacter = ({ userCharacter, selectCharacter, gender, health, onSelectGender, onSelectHealth }) => {
     return (
         <div className="CharacterSelectionContainer">
             <div className="PickingChar">
@@ -16,7 +16,7 @@ const ChooseCharacter = ({ character, selectCharacter, gender, health, onSelectG
             </div>
             <div className="Force">
                 {
-                    character.name && <p>May the force be with you, {character.name}!</p>
+                    userCharacter.name && <p>May the force be with you, {userCharacter.name}!</p>
                 }
             </div>
             <div className="Gender">
@@ -90,7 +90,7 @@ const ChooseCharacter = ({ character, selectCharacter, gender, health, onSelectG
             </div>
             <div className="DeadWarning">
                 {
-                    health === 'dead' && <p>Are you sure you want to look for dead beings, {character.name}?</p>
+                    health === 'dead' && <p>Are you sure you want to look for dead beings, {userCharacter.name}?</p>
                 }
             </div>
         </div>

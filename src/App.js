@@ -11,101 +11,34 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      charData: [
-        {
-          "name": "Luke Skywalker",
-          "image": "https://vignette.wikia.nocookie.net/starwars/images/2/20/LukeTLJ.jpg",
-          "rating": 5
-        },
-        {
-          "name": "C-3PO",
-          "image": "https://vignette.wikia.nocookie.net/starwars/images/3/3f/C-3PO_TLJ_Card_Trader_Award_Card.png",
-          "rating": 4
-        },
-        {
-          "name": "Darth Vader",
-          "image": "https://vignette.wikia.nocookie.net/fr.starwars/images/3/32/Dark_Vador.jpg",
-          "rating": 4
-        },
-        {
-          "name": "Leia Organa",
-          "image": "https://vignette.wikia.nocookie.net/starwars/images/f/fc/Leia_Organa_TLJ.png",
-          "rating": 5
-        },
-        {
-          "name": "Obi-Wan Kenobi",
-          "image": "https://vignette.wikia.nocookie.net/starwars/images/4/4e/ObiWanHS-SWE.jpg",
-          "rating": 5
-        },
-        {
-          "name": "Anakin Skywalker",
-          "image": "https://vignette.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png",
-          "rating": 3
-        }
-      ],
-      whoAmI: {
-        "name": "Anakin Skywalker",
-        "image": "https://vignette.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png",
-        "rating": 3
-      },
-      selectedCharacter: {},
+      chattingCharacter: {},
       userMessage: "",
       sentMessages: [],
-      CharacterData: [],
-      character: {},
+      characterPackages: [],
+      userCharacter: {},
       gender: 'both genders', // can be ['male', 'female', '']
       health: 'dead and living',
     }
   }
 
-  //  =========
+  componentDidMount() {
+    this.setState({ characterPackages: CharacterPackages });
+  }
 
-  //   componentDidMount() {
-  //     this.setState({ charData: CharacterPackages });
-  //     console.log(this.state.charData)
-  //   }
+  chatImageClick = (characterPackage) => {
+    this.setState({ chattingCharacter: characterPackage })
+  }
 
-  //   chatImageClick = (character) => {
-  //     this.setState({ selectedCharacter: character })
-  //   }
 
-  //   showCurrentlyTyping = e => {
-  //     this.setState({ userMessage: e.target.value });
-  //   }
+  selectCharacter = event => {
+    const clickedStr = event.target.value;
+    const clickedChar = this.state.characterPackages.find(char => char.name === clickedStr);
+    this.setState({ userCharacter: clickedChar || {} });
+  }
 
-  //   selectCharacter = event => {
-  //     const clickedStr = event.target.value;
-
-  //     // const clickedChar = this.state.charData.find(char => char.name === clickedStr);
-
-  //     const clickedChar = this.state.CharData.find(char => char.name === clickedStr);
-  //     this.setState({ character: clickedChar || {} });
-  //   }
-
-  //   clickingButton = () => {
-  //     this.setState({ isMale: !this.state.isMale });
-
-  //     ============
-
-  // componentDidMount() {
-  //   this.setState({ CharacterData: CharacterPackages });
-  //   }
-
-  //   chatImageClick = (character) => {
-  //     this.setState({ selectedCharacter: character })
-  //   }
-
-  //   showCurrentlyTyping = e => {
-  //     this.setState({ userMessage: e.target.value });
-  //   }
-
-  //   selectCharacter = event => {
-  //     const clickedStr = event.target.value;
-  //     const clickedChar = this.state.CharacterData.find(char => char.name === clickedStr);
-  //     this.setState ({ character: clickedChar || {} });
-  //   }
-
-  // ===========
+  showCurrentlyTyping = e => {
+    this.setState({ userMessage: e.target.value });
+  }
 
   handleSelectGender = (e) => {
     this.setState({ gender: e.target.value })
@@ -130,25 +63,30 @@ class App extends Component {
     }
   }
 
-  // ALEX'S --> PUTTING RATING INTO STATE WHEN EACH CHARACTER IS 'RATED'
-  // onClickStar = Rating => {
-  //   this.setState(state => {
-  //     const updatedCharData = state.charData.map(
-  //       (charPackage, index) => {
-  //         if (state.step === i) {
-  //           questionPackage.user_answer = userAnswer;
-  //         }
-  //         return questionPackage;
-  //       }
-  //     );
 
-  //     return {
-  //       ...state,
-  //       questionPackages: updatedQuestionPackages,
-  //       localScore: countScore(updatedQuestionPackages)
-  //     };
-  //   });
-  // };
+
+  // ALEX --> INSERT RATING STATE INTO EACH CHARACTER-PACKAGE WHEN THEIR STARS ARE CLICKED ON
+
+  onClickStar = (ratedCharacter, rating) => {
+    this.setState(state => {
+      const updatedCharacterPackages = state.CharacterPackages.map(
+        (characterPackage) => {
+          if (state.characterPackage.name === ratedCharacter.name) {
+            characterPackage.rating = rating;
+          }
+          return characterPackage;
+        }
+      );
+
+      return {
+        ...state,
+        characterPackages: updatedCharacterPackages,
+      };
+    });
+  };
+
+
+
 
 
 
@@ -179,7 +117,7 @@ class App extends Component {
 
             <Route exact path="/">
               <ChooseCharacter
-                character={this.state.character}
+                userCharacter={this.state.userCharacter}
                 selectCharacter={this.selectCharacter}
                 gender={this.state.gender}
                 health={this.state.health}
@@ -189,17 +127,20 @@ class App extends Component {
             </Route>
 
             <Route exact path="/preview">
-              <Preview charData={this.state.charData} />
+              <Preview
+                characterPackages={this.state.characterPackages}
+                onClickStar={this.onClickStar}
+              />
             </Route>
 
             <Route exact path="/top5">
-              <Top5 characters={this.state.charData} chatImageClick={this.chatImageClick} />
+              <Top5 characterPackages={this.state.characterPackages} chatImageClick={this.chatImageClick} />
             </Route>
 
             <Route exact path="/chat">
               <Chat
-                selectedCharacter={this.state.selectedCharacter}
-                whoAmI={this.state.whoAmI}
+                chattingCharacter={this.state.chattingCharacter}
+                userCharacter={this.state.userCharacter}
                 showCurrentlyTyping={this.showCurrentlyTyping}
                 sendMessageNow={this.sendMessageNow}
                 sentMessages={this.state.sentMessages}
