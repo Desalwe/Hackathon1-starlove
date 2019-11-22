@@ -15,7 +15,7 @@ const ChooseCharacter = ({ userCharacter, selectCharacter, gender, health, onSel
                 </select>
             </div>
             <div className="YourPhoto">
-            {
+                {
                     userCharacter.name && <img className="YouLookPretty" src={userCharacter.image}></img>
                 }
                 {/* Due to "userCharacter.name &&", this only appears if we picked a character */}
@@ -105,14 +105,16 @@ const ChooseCharacter = ({ userCharacter, selectCharacter, gender, health, onSel
                 {
                     health === 'dead' && <p>Are you sure you want to look for dead beings, {userCharacter.name}?</p>
                 }
-                 {/* Due to "health === 'dead' &&", this only appears if we select that we want to see dead characters */}
+                {/* Due to "health === 'dead' &&", this only appears if we select that we want to see dead characters */}
             </div>
             {
-                    userCharacter.name && <div className="PreviewButton"><button><a href='/preview'>See some sexy space soldiers</a></button></div>
-                }
-                {/* This button will only appear once a character is picked */}
+                userCharacter.name && <div className="PreviewButton"><button><a href='/preview'>See some sexy space soldiers</a></button></div>
+            }
+            {/* This button will only appear once a character is picked */}
         </div>
     )
 };
+
+// asf
 
 export default ChooseCharacter;
