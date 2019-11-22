@@ -84,7 +84,7 @@ class App extends Component {
         characterPackages: updatedCharacterPackages,
       };
     });
-    console.log(this.state.characterPackages);
+    // console.log(this.state.characterPackages);
   };
 
 
@@ -138,7 +138,10 @@ class App extends Component {
             </Route>
 
             <Route exact path="/top5">
-              <Top5 characterPackages={this.state.characterPackages} chatImageClick={this.chatImageClick} />
+              <Top5
+                characterPackages={this.state.characterPackages}
+                chatImageClick={this.chatImageClick}
+              />
             </Route>
 
             <Route exact path="/chat">

@@ -6,6 +6,8 @@ const Top5 = ({ characterPackages, chatImageClick }) => {
     let sortedCharacterPackages = characterPackages.sort((a, b) => b.rating - a.rating)
     let top5CharacterPackages = sortedCharacterPackages.slice(0, 5)
 
+    console.log(sortedCharacterPackages)
+
     return (
         <>
             {

@@ -63,7 +63,7 @@
 .polaroid-front img {
   width: 100%;
   border-style: ridge;
-  border-color: rgba(227,227,227, 0.3);
+  border-color: rgba(227,227,227);
   border-radius: 11px;
 }
 
@@ -83,9 +83,13 @@
   padding: 0 10px;
 }
 
-.Rating--Star {
+.star-not-selected {
   filter: grayscale(100%); 
   opacity: .3; 
+}
+
+.star-selected {
+  opacity: .9; 
 }
 
 .flip-box:hover .Rating img {
@@ -117,7 +121,7 @@
   opacity: 0;
   width: 100%;
   border-style: ridge;
-  border-color: rgba(227,227,227, 0.3);
+  border-color: rgba(227,227,227);
   border-radius: 11px;
 }
 
