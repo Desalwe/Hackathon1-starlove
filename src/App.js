@@ -69,15 +69,15 @@ class App extends Component {
 
   onClickStar = (ratedCharacter, rating) => {
     this.setState(state => {
-      const updatedCharacterPackages = state.CharacterPackages.map(
+      const updatedCharacterPackages = state.characterPackages.map(
         (characterPackage) => {
-          if (state.characterPackage.name === ratedCharacter.name) {
+          if (characterPackage.name === ratedCharacter.name) {
             characterPackage.rating = rating;
+            console.log(characterPackage);
           }
           return characterPackage;
         }
       );
-
       return {
         ...state,
         characterPackages: updatedCharacterPackages,

@@ -3,10 +3,13 @@ import './Top5.css'
 import { Link } from 'react-router-dom'
 
 const Top5 = ({ characterPackages, chatImageClick }) => {
+    let sortedCharacterPackages = characterPackages.sort((a, b) => b.rating - a.rating)
+    let top5CharacterPackages = sortedCharacterPackages.slice(0, 5)
+
     return (
         <>
             {
-                characterPackages.map(characterPackage => {
+                top5CharacterPackages.map(characterPackage => {
                     return (
                         <div className="top5-container">
                             <Link onClick={() => chatImageClick(characterPackage)} to="/chat">
