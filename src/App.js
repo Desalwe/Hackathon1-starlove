@@ -5,6 +5,11 @@ import ChooseCharacter from './ChooseCharacter';
 import Preview from './Preview';
 import Top5 from './Top5';
 import Chat from './Chat';
+import cog from './cog1.jpg';
+import heartnav from './heart-nav.png';
+import top5icon from './top5-icon.jpg'
+import './App.css';
+
 
 class App extends Component {
 
@@ -98,16 +103,19 @@ class App extends Component {
 
             <ul>
               <li>
-                <Link to="/">Choose Character</Link>
+                <Link to="/">
+                <img className="icon"src={cog}></img>
+                </Link>
               </li>
               <li>
-                <Link to="/preview">Preview</Link>
+                <Link to="/preview">
+                  <img className="icon"src={heartnav}></img>
+                </Link>
               </li>
               <li>
-                <Link to="/top5">Top 5</Link>
-              </li>
-              <li>
-                <Link to="/chat">Chat</Link>
+                <Link to="/top5">
+                  <img className="icon"src={top5icon}></img>
+                </Link>  
               </li>
             </ul>
           </nav>

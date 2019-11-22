@@ -1,0 +1,13 @@
+.icon {
+    height: 50px;
+    width: 50px;
+}
+
+li{
+    list-style: none;
+}
+
+ul{
+    display: flex;
+    margin-block-end: 0px;
+}
